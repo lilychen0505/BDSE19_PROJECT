@@ -117,7 +117,7 @@ def verified_crawl(soup):
 
 df1 = pd.DataFrame(columns=['id', 'car_brand', 'car_model', 'car_address', 'car_title', 'dealer_name'])
 
-for page in range(1, 4):
+for page in range(1, 340):
 
     sum_url = f'https://www.sum.com.tw/carsearchlist.php?v=3&ctp_prt=&price1=0&price2=220&yearrange=&cararea=&carregion=&cartype=&carcolor=&brand=&model=&year1=&year2=&doors=&q=&show_type=&carrecommend=&comp_goldstore=&discount=&cc1=&cc2=&protection=&carvr=&page=&sort=&sortpage1=&gclid=&priceRange1=&priceRange2=&wd=&_de=0.5690229095899482&page={page}'
 
@@ -134,29 +134,35 @@ for page in range(1, 4):
         print('HTTP_error')
         print(sys.exc_info())
         continue
+    try:
+        seo_list = soup.find_all('li', class_='seo_list')
+    except:
+        print(f'Parsing Error: {page}')
 
-    seo_list = soup.find_all('li', class_='seo_list')
     list1 = []
 
     for li in seo_list:
+        try:
+            idnum = li.get('data-seo_name')
 
-        idnum = li.get('data-seo_name')
+            car_info = li.find('h3').a.text.split('｜')
 
-        car_info = li.find('h3').a.text.split('｜')
+            car_brand = car_info[0].split(' ', 1)[0]
 
-        car_brand = car_info[0].split(' ', 1)[0]
+            car_model = car_info[0].split(' ', 1)[1]
 
-        car_model = car_info[0].split(' ', 1)[1]
+            car_address = li.find('ul').find_next_sibling().find('li').text
 
-        car_address = li.find('ul').find_next_sibling().find('li').text
+            car_title = li.find('div', class_='carCondition').h3.text.strip()
 
-        car_title = li.find('div', class_='carCondition').h3.text.strip()
-
-        car_dealer = li.find('ul').find_next_sibling().find(
+            car_dealer = li.find('ul').find_next_sibling().find(
             'li').find_next_sibling().text
 
-        df1 = df1.append({'id': idnum, 'car_brand': car_brand, 'car_model': car_model,
+            df1 = df1.append({'id': idnum, 'car_brand': car_brand, 'car_model': car_model,
                           'car_address': car_address, 'car_title': car_title, 'dealer_name': car_dealer}, ignore_index=True)
+        except:
+            print(f'data-seo_name parsing error: {page}')
+            continue
 
 df1.to_csv('sum_car_first.csv', encoding = 'utf-8-sig')
 
@@ -186,23 +192,28 @@ for id_nu in df1['id']:
         print(f'car_price parsing error:{id_nu}')
         car_price =  None
         pass
+    try:
+        dfver = verified_crawl(soup1)
 
-    dfver = verified_crawl(soup1)
+        carDetail = soup1.find('div', class_='buyCarDetailTitleTextContent')
 
-    carDetail = soup1.find('div', class_='buyCarDetailTitleTextContent')
+        photo_url = soup1.find('div', class_='buyCarDetailTitleImg').text
 
-    photo_url = soup1.find('div', class_='buyCarDetailTitleImg').text
-
-    info = carDetail.div.find_next_siblings()
+        info = carDetail.div.find_next_siblings()
+    except:
+        print(f'car photo or detail parsing error: {id_nu}')
+        pass
 
     info_list = []
     
     try:
         for sp in info:
             info_list.append(sp.span.text.strip())
-    except:
+    except AttributeError:
         pass
-
+    except:
+        print(f'Unexpected error: {id_nu}')
+        continue
     dealer_address = dealer_address_crawl(soup1)
 
     dfequ = equipment_crawl(soup1)
