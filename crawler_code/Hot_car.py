@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
 import time
-import sys
 import logging
 
 logging.basicConfig(
@@ -46,8 +45,7 @@ if __name__ == "__main__":
             driver = webdriver.Chrome('./chromedriver')
             driver.get(url_idnum)
         except:
-            logger.warning(f'driver_getURL error: {idnum}')
-            logger.warning(sys.exc_info)
+            logger.warning(f'driver_getURL error: {idnum}', exc_info=True)
             continue
 
         driver.maximize_window()
@@ -57,18 +55,22 @@ if __name__ == "__main__":
             soup = None
             soup = BeautifulSoup(driver.page_source, 'lxml')
         except:
-            logger.warning(f'parse_html error: {idnum}')
-            logger.warning(sys.exc_info)
+            logger.error(f'parse_html error: {idnum}', exc_info=True)
+
             continue
 
         try:
             car_driveMode = None
             car_driveMode = soup.find(class_='tablein').find_next_sibling().find(
                 class_='text').text.strip()
-
         except:
-            logger.warning(f'car_driveMode parsing error {idnum}')
-            logger.warning(sys.exc_info)
+            logger.error(f'car_driveMode parsing error {idnum}', exc_info=True)
+            pass
+        try:
+            car_fuel = None
+            car_fuel = soup.find(class_='text', attrs={'data-bind':'html:GASTYPENM'})
+        except:
+            logger.error(f'car_fuel parsing error: {idnum}', exc_info=True)
             pass
 
         try:
@@ -77,8 +79,7 @@ if __name__ == "__main__":
                 class_='text').text.strip()
 
         except:
-            logger.warning(f'dealer_address parsing error {idnum}')
-            logger.warning(sys.exc_info)
+            logger.error(f'dealer_address parsing error {idnum}', exc_info=True)
             pass
 
         try:
@@ -87,14 +88,13 @@ if __name__ == "__main__":
                 'img', class_='rsImg rsMainSlideImage').get('src').strip()
 
         except:
-            logger.warning(f'car_photo parsing error {idnum}')
-            logger.warning(sys.exc_info)
+            logger.error(f'car_photo parsing error {idnum}', exc_info=True)
             pass
 
         dfinfo = None
         dfinfo = pd.DataFrame(
             columns=['TSEQNO', 'car_driveMode', 'dealer_address', 'car_photo'])
-        dfinfo = dfinfo.append({'TSEQNO': idnum, 'car_driveMode': car_driveMode,
+        dfinfo = dfinfo.append({'TSEQNO': idnum, 'car_driveMode': car_driveMode, 'car_fuel': car_fuel,
                                 'dealer_address': dealer_address, 'car_photo': car_photo}, ignore_index=True)
 
         dfequ = pd.DataFrame(np.zeros(shape=(1, 28), dtype=int), columns=['安全氣囊', 'ABS', '定速',
@@ -113,8 +113,7 @@ if __name__ == "__main__":
                 else:
                     dfequ[equ] = 1
         except:
-            logger.warning(f'equipment parsing error {idnum}')
-            logger.warning(sys.exc_info)
+            logger.error(f'equipment parsing error {idnum}', exc_info=True)
             pass
 
         df_temp = None
