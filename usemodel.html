@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- bestCar -->
+<style>
+h1, h2, h3, h4, h5, h6 {
+   font-family: sans-serif;
+   text-align: center;
+ }
+ 
+ p, div, form, section {
+   font-family: serif;
+   font-size: medium;
+ }
+</style>
+
+<section id="contact" class="bestCar">
+   <div id="contact" class="bestCar">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="row">
+                  <div class="col-md-6 offset-md-6">
+                     <form style="background-color:black; margin: 30px;
+                                  padding: 30px; color: #FFFFF0;" 
+                           class="main_form" action="" method="POST" novalidate>
+                        {{ form.hidden_tag() }}
+                        <div class="titlepage">
+                           <h2>Use model to Predict Price</h2>
+                        </div>
+                        <div class="row">
+                           <!--span>{{ error_info }}</span-->
+                           <div style="background-color: #DCDCDC;"class="col-md-12">
+                              <p style="font-size:large; background-color:#A9A9A9; border: 3px solid #A9A9A9">{{ form.car_brand.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car Brand</label>
+                                 <input class="form-control" list="car_brand" id="exampleDataList"
+                                    placeholder="請輸入廠牌">
+                                 <datalist id="car_brand">
+                                    <option value="{{ form.car_brand(size=10) }}">
+                                 </datalist>
+                              </div-->
+                              <p style="background-color:#A9A9A9; border: 3px solid #A9A9A9; border-radius: 15px; margin: 30px;
+                              padding: 30px; color: black;">{{ form.car_brand(size=15) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;"></p>{{ form.car_model.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car Model</label>
+                                 <input class="form-control" list="car_model" id="exampleDataList"
+                                    placeholder="請輸入車型">
+                                 <datalist id="car_model">
+                                    <option value="{{form.car_model(size=10)}}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_model(size=15) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_year.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car Year</label>
+                                 <input class="form-control" list="car_year" id="exampleDataList"
+                                    placeholder="請輸入年份">
+                                 <datalist id="car_year">
+                                    <option value="{{ form.car_year(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_year(size=15) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_mileage.label}}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car Mileage</label>
+                                 <input class="form-control" list="car_mileage" id="exampleDataList"
+                                    placeholder="請輸入里程">
+                                 <datalist id="car_mileage">
+                                    <option value="{{ form.car_mileage(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_mileage(size=15) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_color.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car Color</label>
+                                 <input class="form-control" list="car_color" id="exampleDataList"
+                                    placeholder="請輸入顏色">
+                                 <datalist id="car_color">
+                                    <option value="{{ form.car_color(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_color(size=15) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_cylinderVolume.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car CylinderVolume</label>
+                                 <input class="form-control" list="car_cylinderVolume" id="exampleDataList"
+                                    placeholder="請輸入排氣量">
+                                 <datalist id="car_cylinderVolume">
+                                    <option value="{{ form.car_cylinderVolume(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_cylinderVolume(size=15) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_driveMode.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Car DriveMode</label>
+                                 <input class="form-control" list="car_driveMode" id="exampleDataList"
+                                    placeholder="請輸入驅動方式">
+                                 <datalist id="car_driveMode">
+                                    <option value="{{ form.car_driveMode(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_driveMode(size=5) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_gear.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Gear</label>
+                                 <input class="form-control" list="car_gear" id="exampleDataList"
+                                    placeholder="請輸入變數系統">
+                                 <datalist id="car_gear">
+                                    <option value="{{ form.car_gear(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_gear(size=5) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_fuel.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Fuel</label>
+                                 <input class="form-control" list="car_fuel" id="exampleDataList"
+                                    placeholder="請輸入燃料">
+                                 <datalist id="car_fuel">
+                                    <option value="{{ form.car_fuel(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_fuel(size=5) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_door.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Door</label>
+                                 <input class="form-control" list="car_door" id="exampleDataList"
+                                    placeholder="請輸入車門數量">
+                                 <datalist id="car_door">
+                                    <option value="{{ form.car_door(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_door(size=5) }}</p>
+                           </div>
+                           <div class="col-md-12">
+                              <p style="font-size:large;">{{ form.car_seat.label }}</p>
+                              <!--div class="col-md-12 form-control-lg">
+                                 <label for="exampleDataList" class="form-label">Choose Seat</label>
+                                 <input class="form-control" list="car_seat" id="exampleDataList"
+                                    placeholder="請輸入座位數量">
+                                 <datalist id="car_seat">
+                                    <option value="{{ form.car_seat(size=15) }}">
+                                 </datalist>
+                              </div-->
+                              <p>{{ form.car_seat(size=5) }}</p>
+                           </div>
+                           <div class="col-sm-12 form-control-lg">
+                              <p>{{ form.submit(size=10) }}</p>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}
