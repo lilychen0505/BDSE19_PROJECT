@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- bestCar -->
+<style>
+h1, h2, h3, h4, h5, h6 {
+   font-family: sans-serif;
+   text-align: center;
+ }
+ 
+ p, div, form, section {
+   font-family: serif;
+   font-size: medium;
+ }
+</style>
+
+<section id="contact" class="bestCar">
+   <div id="contact" class="bestCar">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="row">
+                  <div class="col-md-6 offset-md-6">
+                     <form style="background: transparent;" class="main_form" action="" method="POST" novalidate>
+                        {{ form.hidden_tag() }}
+                        <div class="titlepage">
+                           <h2 style="color:#FFFFF0; font-size: 35px; padding-top: 20px; font-weight: bold;">Use model to Predict Price</h2>
+                        </div>
+                        <div class="row">
+                           <!--span>{{ error_info }}</span-->
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_brand.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_brand(size=10) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_model.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_model(size=10) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_year.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_year(size=10) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_mileage.label}}</p>
+                              <p style="padding-left:20px;">{{ form.car_mileage(size=10) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large;padding-left:20px;">{{ form.car_color.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_color(size=8) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_cylinderVolume.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_cylinderVolume(size=10) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_driveMode.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_driveMode(size=3) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_gear.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_gear(size=4) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_fuel.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_fuel(size=4) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_door.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_door(size=4) }}</p>
+                           </div>
+                           <div style="background-color:#DCDCDC; border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 15px;"class="col-md-12">
+                              <p style="font-size:large; padding-left:20px;">{{ form.car_seat.label }}</p>
+                              <p style="padding-left:20px;">{{ form.car_seat(size=3) }}</p>
+                           </div>
+                           <div style="border-radius: 15px; color:black; font-size:large; 
+                           margin: 15px; padding: 20px;"class="col-sm-12 form-control-lg">
+                              <p style="text-align: center;">{{ form.submit(size=10) }}</p>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}
