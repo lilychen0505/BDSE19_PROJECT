@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <div id="contact" class="bestCar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-6">
+                            <form class="main_form">
+                                <div class="titlepage">
+                                    <h2>Find the Best Loan</h2>
+                                    <p>每月信貸本息平均攤還月付金式算</p>
+                                </div>
+                                <div class="row" id="loanagain">
+                                    <div class="col-sm-12">
+                                        {% if price != None %}
+                                        <input id="monetary" class="contactus" placeholder="貸款金額(萬)" type="Search"
+                                            name="Search" value="{{ price }}">
+                                        {% else %}
+                                        <input id="monetary" class="contactus" placeholder="貸款金額(萬)" type="Search"
+                                            name="Search">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input id="years" class="contactus" placeholder="貸款期間(年)" type="Search"
+                                            name="Search">
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <a href="#loancal">
+                                            <div style="text-align:center"><input class="find_btn" type="button"
+                                                    value="Find Now" onclick="ChangeString()"> </div>
+                                            <p style="text-align:center"><span id="NewStringBox"></span></p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div id="loancal" class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/bltccdfa047468c07d4/5cada213c1e04daa4df83cbc/obkx.png?width=&amp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">王道銀行 階梯利率信貸</h5>
+                            <br><br />
+                            <!-- Product info-->
+                            <ul>
+                                <li>最低費用年百分率: 2.2%</li>
+                                <li>手續費: $7800</li>
+                                <li id="box1">每月最低還款額: </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://www.o-bank.com/web/Event/Loan_SR108/index.html?">Apply</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/blt54d2becc1d8e34f6/5cada1c8fd6f02af4ddca04b/hsbc.png?width=&amp;height=80&amp;auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">滙豐銀行 閃光0.1%專案</h5>
+                            <br><br />
+                            <!-- Product reviews-->
+                            <!-- <div class="d-flex justify-content-center small text-warning mb-2"> -->
+                            <!-- <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div> -->
+                            <!-- Product info-->
+                            <ul>
+                                <li>最低費用年百分率: 2.78%</li>
+                                <li>手續費: $3000</li>
+                                <li id="box2">每月最低還款額: </li>
+                            </ul>
+                            <!-- </div> -->
+
+
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://loan.apply.hsbc.com.tw/hsbcpil/personal_loan/apply">Apply</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/blt168433ba9cc9502d/5daffdda56458c6b3fc17111/%E6%B0%B8%E8%B1%90%E9%8A%80%E8%A1%8C_Logo@3x.png?width=&amp;height=72&amp;auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" style="text-align:center">永豐銀行 數時貸</h5>
+                            <br><br />
+                            <ul>
+                                <li>最低費用年百分率: 3.45%</li>
+                                <li>手續費: $888</li>
+                                <li id="box3">每月最低還款額: </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://bank.sinopac.com/sinopacBT/webevents/1910_PLdigital/index.html?">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/blt6279141e797873d9/5e44b6af676f840d367b047d/KGI_LOGO@2x.png?width=&height=72&auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" style="text-align:center">凱基銀行 優利貸款</h5>
+                            <br><br />
+                            <!-- Product reviews-->
+                            <!-- <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div> -->
+                            <ul>
+                                <li>最低費用年百分率: 2.32%</li>
+                                <li>手續費: $3000</li>
+                                <li id="box4">每月最低還款額: </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://www.kgibank.com/T03/T0304/T0304_0011.html">Apply</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/blt9c15819628f1acd4/5cda67933a96e8740b18e040/cub.png?width=&height=72&auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" style="text-align:center">國泰世華 大樹速貸</h5>
+                            <br><br />
+                            <ul>
+                                <li>最低費用年百分率: 3.36%</li>
+                                <li>手續費: $5000</li>
+                                <li id="box5">每月最低還款額: </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://www.cathaybk.com.tw/cathaybk/personal/loan/product/tree-loan/">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/blt05ada1b6f631fcc0/5cad9e2d73513ece460473bd/scbx.png?width=&height=72&auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" style="text-align:center">上海商銀 優利貸</h5>
+                            <br><br />
+                            <ul>
+                                <li>最低費用年百分率: 2.62%</li>
+                                <li>手續費: $3000</li>
+                                <li id="box6">每月最低還款額: </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://www.scsb.com.tw/newscsbweb/content/ind/ind_06_e1.jsp">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/blt5875898d3e254d2d/5cad9e5e353433e248a57c67/skb.png?width=&height=72&auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" style="text-align:center">新光銀行 優質卡友專案</h5>
+                            <br><br />
+                            <!-- Product reviews-->
+                            <!-- <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div> -->
+                            <ul>
+                                <li>最低費用年百分率: 3.64%</li>
+                                <li>手續費: $3000</li>
+                                <li id="box7">每月最低還款額: </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://www.skbank.com.tw/b333a19d14.html?">Apply</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top bank-img"
+                        src="https://images.contentstack.io/v3/assets/blt4ca32b8be67c85f8/bltafcd2b681963dbda/5c8237541105331443b5adeb/union.png?width=&height=72&auto=webp"
+                        alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-left">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder" style="text-align:center">聯邦銀行 好好貸款</h5>
+                            <br><br />
+                            <!-- Product reviews-->
+                            <!-- <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div> -->
+                            <ul>
+                                <li>最低費用年百分率: 2.62%</li>
+                                <li>手續費: $3000</li>
+                                <li id="box8">每月最低還款額: </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="https://card.ubot.com.tw/eCard/activity/PersonalLoan/index.htm">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 text-bg">
+            <a class="find_btn forlink" href="{{ url_for('index') }}" role="button" aria-pressed="true">回首頁</a>
+            <a class="find_btn forlink" href="#loanagain" role="button" aria-pressed="true">重新試算</a>
+            <a class="find_btn forlink" href="javascript:history.go(-2)" role="button" aria-pressed="true">回上一頁</a>
+            <a class="find_btn forlink" href="{{ url_for('bestCarForm')}}" role="button" aria-pressed="true">前往車款推薦</a>
+        </div>
+    </div>
+</section>
+<div class="choose ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h4>免責條款</h4>
+                    <span>我們不證實本網站上由第三方機構提供的資訊和數據，我們盡最大努力維持本網站上資訊、內容和資料的準確性。但您須意識到這些內容可能是不准確、不完整或者是過期的。我們不承擔因本網站上第三方機構資訊不正確或有遺漏，以及其他因第三方機構提供的數據而帶來的任何結果，若有任何疑慮，請您逕行拜訪第三方機構所屬網站或洽詢其營業機構。我們不承擔而帶來的任何後果</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <span>本網站會以超連結方式，提供您連結至第三方機構所屬網站查詢資訊或申辦服務，您一旦點選此類超連結，將前往非屬本專案管理維運範圍之網站，關於該等連結網站的隱私權聲明及與個人資料保護有關告知事項，請您參閱各該連結網站，本專案對於連結網站或合作夥伴網站之內容不負任何責任。請您點選時須知悉此舉將離開本網站並自行評估安全性。
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

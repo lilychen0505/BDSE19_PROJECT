@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- bestCar -->
+<section>
+    <div id="contact" class="bestCar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-6">
+                            <form style="background: transparent;" action="/predictPrice" method="POST">
+                                <div class="titlepage">
+                                    <h2 class="forformh2" style="color: white">二手車價預測</h2>
+                                    {% if exec_info != None %}
+                                    <div style="color: red">{{ exec_info }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform" for="car_brand_id">選擇車廠</label>
+                                        <select class="forblock" id="car_brand_id" name="car_brand">
+                                            <option selected> -- 選擇車厰 -- </option>
+                                            {% for brand in car_brand %}
+                                            <option value="{{ brand }}">{{ brand }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform" for="car_model_id">選擇車型</label>
+                                        <select class="forblock" id="car_model_id" name="car_model"></select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">車款年份</label>
+                                        <select class="forblock" id="car_year_id" name="car_year">
+                                            <option selected> -- 選擇年份 -- </option>
+                                            {% for year in range(2021, 1989, -1) %}
+                                            <option value="{{ year }}">{{ year }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">車款里程</label>
+                                        <input class="form-control forblock" id="car_mileage_id" type="text"
+                                            name="car_mileage" placeholder="車款里程">
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">選擇車輛顏色</label>
+                                        <select class="forblock" id="car_color_id" name="car_color">
+                                            <option selected> -- 選擇車輛顏色 -- </option>
+                                            <option value="黑色">黑色</option>
+                                            <option value="白色">白色</option>
+                                            <option value="銀色">銀色</option>
+                                            <option value="藍色">藍色</option>
+                                            <option value="紅色">紅色</option>
+                                            <option value="灰色">灰色</option>
+                                            <option value="綠色">綠色</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">排氣量</label>
+                                        <input class="form-control forblock" id="car_cylinderVolume_id" type="text"
+                                            name="car_cylinderVolume" placeholder="排氣量(cc)">
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">選擇驅動方式</label>
+                                        <select class="forblock" id="car_driveMode_id" name="car_driveMode">
+                                            <option selected> -- 選擇驅動方式 -- </option>
+                                            <option value="二輪驅動">二輪驅動</option>
+                                            <option value="四輪驅動">四輪驅動</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">選擇變速箱形式</label>
+                                        <select class="forblock" id="car_gear_id" name="car_gear">
+                                            <option selected> -- 選擇變速箱形式 -- </option>
+                                            <option value="手自排">手自排</option>
+                                            <option value="自手排">自手排</option>
+                                            <option value="自排">自排</option>
+                                            <option value="自排">手排</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">選擇燃料</label>
+                                        <select class="forblock" id="car_fuel_id" name="car_fuel">
+                                            <option selected> -- 選擇燃料 -- </option>
+                                            <option value="汽油">汽油</option>
+                                            <option value="柴油">柴油</option>
+                                            <option value="油電">油電</option>
+                                            <option value="純電">純電</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">選擇車門數</label>
+                                        <select class="forblock" id="car_door_id" name="car_door">
+                                            <option selected> -- 選擇車門數 -- </option>
+                                            <option value="2">2</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 forformdiv">
+                                        <label class="forlabel newform">選擇座位數</label>
+                                        <select class="forblock" id="car_seat_id" name="car_seat">
+                                            <option selected> -- 選擇座位數 -- </option>
+                                            <option value="2">2</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <button type="submit" class="btn btn-primary mb-2 submitButton">開始預測</button>
+                                        <button type="button" id="demobutton" class="btn btn-primary mb-2 submitButton"
+                                            onclick="selectString(); inputString();">DEMO</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{{ url_for('static', filename='js/model1form.js') }}"></script>
+{% endblock %}
